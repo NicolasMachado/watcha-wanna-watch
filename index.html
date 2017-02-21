@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
+    <title>Watcha Wanna Watch</title>
+	<meta name="description" content="Let me recommend you your favorite movies" />
+
+	<!-- Responsive viewport tag, tells small screens that it's responsive -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/lightcase.css">
-    <title>Watcha Wanna Watch</title>
 </head>
-<header>
-	<div id="desc">
-		<div class="desc-title"></div>
-		<div class="desc-rating"></div>
-		<div class="desc-synopsis"></div>
-		<iframe class="desc-trailer" width="267px" height="200px" src="" frameborder="0" allowfullscreen hidden></iframe>
-	</div>
-    <div class="logo">
-        <img src="images/logo.png">
-    </div>
-</header>
 <body>
+	<header>
+		<div id="desc">
+			<div class="desc-title"></div>
+			<div class="desc-rating"></div>
+			<div class="desc-synopsis"></div>
+			<iframe class="desc-trailer" width="267px" height="200px" src="" frameborder="0" allowfullscreen hidden></iframe>
+		</div>
+	    <div class="logo row col-3">
+	        <img src="images/logo.png">
+	    </div>
+	</header>
 	<main class="row">
-		<div class="intro">
+		<div class="intro col6">
 			<p>There are thousands of movies out there, but have you ever stood there, wondering what to watch next? This application
 			dives into your mind and recommends movies based on your character and preferences. All you have to do is answer a series
 			of short questions.</p>
