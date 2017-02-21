@@ -3,7 +3,7 @@ var controller = {
     genresToReturn: 2, // number of genres to return
     orderArray: [],
     currentQuestion: 0,
-    nbQuestions: 7, // number of questions to randomly extract from the pool and ask
+    nbQuestions: 1, // number of questions to randomly extract from the pool and ask
     imgBaseUrl: "",
     posterSizes: [],
     sortBy: "",
@@ -148,19 +148,26 @@ $(function () {
     controller.sortBy = randSortBy(); // get a random sortBy
     displayQuestion();
     getConfig(); // get config from API
+    // click on start
     $(".start-button").click(function () {
         $(".intro").hide();  
-        $(".questions-container").show();        
+        $(".questions-container").show();    
     });
+    // click on answer 1
     $(".answer1-container").click(function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], true);
         controller.currentQuestion += 1;
         displayQuestion();
     });
+    // click on answer 2
     $(".answer2-container").click(function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], false);
         controller.currentQuestion += 1;
         displayQuestion();
+    });
+    // click on movie image
+    $(".movies").on("click", ".lightbox", function () {
+        //$("#desc").append("<p>BLAHBLAHBLAH</p>");
     });
 });
 
@@ -175,7 +182,7 @@ function displayQuestion() {
 function recordAnswer(question, answer) {
     "use strict";
     var effectsArray = question.effect;
-    // add respective weight to controller depending on answer (1 or 2)
+    // add respective weights to controller depending on answer (1 or 2)
     effectsArray.forEach(function (element) {
         if (answer) {
             controller.genresWeight[element[0]] += element[1];
@@ -183,7 +190,7 @@ function recordAnswer(question, answer) {
             controller.genresWeight[element[0]] -= element[1];
         }
     });
-
+    // if it is the last question, show results
     if (controller.currentQuestion >= controller.nbQuestions - 1) {
         $(".questions-container").empty();
         $(".questions-container").hide();
@@ -250,11 +257,23 @@ function displayResults(response) {
     $.each(response.results, function (i) {
         $(".movies").append(
             "<div class=\"col-3\">" +
-                "<div class=\"movie-container\">" +
-                    "<img class=\"poster\" src=\"" + controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path + "\" onerror=\"this.onerror=null;this.src='images/unavailable.jpg';\"></img>" +
-                "</div>" +
+                "<a class=\"lightbox\" data-id=\"" + response.results[i].id + "\">" + 
+                    "<div class=\"movie-container\">" +
+                        "<img class=\"poster\" src=\"" + controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path + "\" onerror=\"this.onerror=null;this.src='images/unavailable.jpg';\"></img>" +
+                    "</div>" +
+                "</a>" +
             "</div>"
         );
+    });
+    $(".lightbox").lightcase({
+        href:"#desc",
+        // Would be called before generating content
+        onInit : {
+            bar: function() {
+                var movieID = $(this).data("id");
+                $("#desc").html("<p>This is movie number : " + movieID +  "</p>");
+            }
+        },
     });
 }
 

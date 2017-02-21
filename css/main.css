@@ -1,7 +1,4 @@
 /* =================== MAIN =================== */
-html {
-}
-
 header {
     text-align: center;
 }
@@ -9,6 +6,11 @@ header {
 p {
 	padding: 20px;
 	font-size: 15px;
+}
+
+#desc {
+	position: fixed;
+	left: -9999999px;
 }
 
 .intro {
