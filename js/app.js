@@ -269,12 +269,71 @@ function displayResults(response) {
         href:"#desc",
         // Would be called before generating content
         onInit : {
-            bar: function() {
+            a: function() {
                 var movieID = $(this).data("id");
-                $("#desc").html("<p>This is movie number : " + movieID +  "</p>");
+                // ajax movie details
+                var configDetails = {
+                    async: true,
+                    crossDomain: true,
+                    url: "https://api.themoviedb.org/3/movie/" + movieID +"?",
+                    method: "GET",
+                    language: "en-US",
+                    headers: {},
+                    data: {
+                        api_key: "88de9361639ced0c7b6766740b0e8527"
+                    },
+                    success: recordDetails,
+                    error: function (result, status, error) {
+                        console.log(result + " - " + status + " - " + error);
+                    }                
+                }
+                $.ajax(configDetails);
+
+                // ajax movie videos
+                var configVDetails = {
+                    async: true,
+                    crossDomain: true,
+                    url: "https://api.themoviedb.org/3/movie/" + movieID + "/videos?",
+                    method: "GET",
+                    language: "en-US",
+                    headers: {},
+                    data: {
+                        api_key: "88de9361639ced0c7b6766740b0e8527"
+                    },
+                    success: recordVideoDetails,
+                    error: function (result, status, error) {
+                        console.log(result + " - " + status + " - " + error);
+                    }                
+                }
+                $.ajax(configVDetails);
             }
         },
+        // Would be called when aborting lightcase
+        onClose : {
+            a: function() {
+                $(".desc-title").text("");
+                $(".desc-rating").text("");
+                $(".desc-synopsis").text("");     
+                $(".desc-trailer").attr("src", "").hide();          
+            }
+        }
     });
+}
+
+function recordDetails(config) {
+    "use strict";
+    console.log(config);
+    $(".desc-title").text(config.title);
+    $(".desc-rating").text(config.vote_average+"/10");
+    $(".desc-synopsis").text(config.overview);
+}
+
+function recordVideoDetails(config) {
+    "use strict";
+    console.log(config);
+    if (config.results[0].key) {
+        $(".desc-trailer").attr("src", "https://www.youtube.com/embed/" + config.results[0].key).show();
+    }
 }
 
 function getHighestGenres() {
