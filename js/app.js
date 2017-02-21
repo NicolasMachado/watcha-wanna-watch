@@ -267,13 +267,16 @@ function displayResults(response) {
     });
     $(".lightbox").lightcase({
         href:"#desc",
+        transitionOut: "elastic",
+        cssTransitions: true,
+        liveResize: true,
         // Would be called before generating content
         onInit : {
             a: function() {
                 var movieID = $(this).data("id");
                 // ajax movie details
                 var configDetails = {
-                    async: true,
+                    async: false,
                     crossDomain: true,
                     url: "https://api.themoviedb.org/3/movie/" + movieID +"?",
                     method: "GET",
@@ -291,7 +294,7 @@ function displayResults(response) {
 
                 // ajax movie videos
                 var configVDetails = {
-                    async: true,
+                    async: false,
                     crossDomain: true,
                     url: "https://api.themoviedb.org/3/movie/" + movieID + "/videos?",
                     method: "GET",
@@ -311,9 +314,9 @@ function displayResults(response) {
         // Would be called when aborting lightcase
         onClose : {
             a: function() {
-                $(".desc-title").text("");
-                $(".desc-rating").text("");
-                $(".desc-synopsis").text("");     
+                $(".desc-title").empty();
+                $(".desc-rating").empty();
+                $(".desc-synopsis").empty();     
                 $(".desc-trailer").attr("src", "").hide();          
             }
         }
@@ -323,15 +326,31 @@ function displayResults(response) {
 function recordDetails(config) {
     "use strict";
     console.log(config);
+    var numFullStars = config.vote_average/2;
+    var halfStar = "";
+    var starString = "";
+    numFullStars % 1 >= .5 ? halfStar = "<img src=\"images/star-half.png\">" : halfStar = "<img src=\"images/star-empty.png\">";
+    for (var i = 1; i <= 5; i++) {
+        if (i <= numFullStars) {
+            starString += "<img src=\"images/star-full.png\">";
+        } else if (i == Math.floor(numFullStars)+1) {
+            starString += halfStar;          
+        } else {
+            starString += "<img src=\"images/star-empty.png\">";           
+        }
+    }
     $(".desc-title").text(config.title);
-    $(".desc-rating").text(config.vote_average+"/10");
+    if (numFullStars > 0) {
+        $(".desc-rating").append(starString);
+    }
     $(".desc-synopsis").text(config.overview);
 }
 
 function recordVideoDetails(config) {
     "use strict";
     console.log(config);
-    if (config.results[0].key) {
+    if (config.results.length > 0) {
+        $(".desc-trailer").show();
         $(".desc-trailer").attr("src", "https://www.youtube.com/embed/" + config.results[0].key).show();
     }
 }

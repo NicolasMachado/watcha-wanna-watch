@@ -209,7 +209,10 @@
     z-index: 1;
     overflow: hidden;
     text-shadow: none;
-    background-color: #fff;
+    background-color: #333;
+    border-radius: 10px;
+    color: #666;
+    text-align: center;
     -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     -o-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
