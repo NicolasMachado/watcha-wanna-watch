@@ -33,7 +33,7 @@ p {
 }
 
 .hidden {
-	display: none;
+	visibility: hidden;
 	background-color: red;
 }
 

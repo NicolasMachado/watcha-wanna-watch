@@ -143,7 +143,7 @@ var controller = {
 
 $(function () {
     "use strict";
-    $(".questions-container").hide();
+    $(".questions-container").hide().removeClass("hidden");
     controller.orderArray = shuffle(); // randomize questions
     controller.sortBy = randSortBy(); // get a random sortBy
     displayQuestion();
@@ -251,7 +251,7 @@ function displayResults(response) {
         $(".movies").append(
             "<div class=\"col-3\">" +
                 "<div class=\"movie-container\">" +
-                    "<img class=\"poster\" src=\"" + controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path + "\"></img>" +
+                    "<img class=\"poster\" src=\"" + controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path + "\" onerror=\"this.onerror=null;this.src='images/unavailable.jpg';\"></img>" +
                 "</div>" +
             "</div>"
         );
