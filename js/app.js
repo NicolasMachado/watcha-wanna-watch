@@ -247,8 +247,9 @@ function getConfig() {
 
 function recordConfig(config) {
     "use strict";
-    controller.imgBaseUrl = config.images.base_url;
+    controller.imgBaseUrl = config.images.secure_base_url;
     controller.posterSizes = config.images.poster_sizes[3]; // poster size
+    console.log(config);
 }
 
 function displayResults(response) {
