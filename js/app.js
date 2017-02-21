@@ -42,9 +42,9 @@ var controller = {
         },
         {
             type: "genre",
-            question: "Real people are...",
-            answer1: "Booooring",
-            answer2: "The best",
+            question: "Blue or black?",
+            answer1: "Blue",
+            answer2: "Black",
             effect: [[28, 1], [12, 1], [16, 2], [99, -2], [14, 1]]
         },
         {
@@ -143,10 +143,15 @@ var controller = {
 
 $(function () {
     "use strict";
-    controller.orderArray = shuffle();
-    controller.sortBy = randSortBy();
+    $(".questions-container").hide();
+    controller.orderArray = shuffle(); // randomize questions
+    controller.sortBy = randSortBy(); // get a random sortBy
     displayQuestion();
-    getConfig();
+    getConfig(); // get config from API
+    $(".start-button").click(function () {
+        $(".intro").hide();  
+        $(".questions-container").show();        
+    });
     $(".answer1-container").click(function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], true);
         controller.currentQuestion += 1;
