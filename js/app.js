@@ -256,11 +256,17 @@ function displayResults(response) {
     "use strict";
     console.log(response);
     $.each(response.results, function (i) {
+        var imagePath = "";
+        if (response.results[i].poster_path) {
+            imagePath = controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path;
+        } else {
+            imagePath = "images/unavailable.jpg";           
+        }
         $(".movies").append(
             "<div class=\"col-3\">" +
                 "<a class=\"lightbox\" data-id=\"" + response.results[i].id + "\">" + 
-                    "<div class=\"movie-container\">" +
-                        "<img class=\"poster\" src=\"" + controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path + "\" onerror=\"this.onerror=null;this.src='images/unavailable.jpg';\"></img>" +
+                    "<div class=\"movie-container\" style=\"background: url(\'" + imagePath + "\') no-repeat center;background-size: 100% auto;\">" +
+                    "<span class=\"movie-title\">" + response.results[i].title + "</span>" +
                     "</div>" +
                 "</a>" +
             "</div>"
