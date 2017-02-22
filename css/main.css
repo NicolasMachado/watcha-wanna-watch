@@ -1,10 +1,10 @@
 /* =================== MAIN =================== */
 html {
-	background-color: #F3F2E9;
+	background-color: #EDF1E8;
 }
 
 .separator {
-	background-color: #EAE9F3;
+	background-color: #EDF1E8;
 	width: 3px;
 	height: 100%;
 }
@@ -121,13 +121,13 @@ p {
 }
 
 .question-title {
-	margin-bottom: 3px;
+	margin-bottom: 4px;
 	font-size: 18px;	
-	background-color: #000;
 	color: #fff;
 	flex-basis: 100%;
 	padding: 10px;
 	border-radius: 5px 5px 0 0;
+	background: linear-gradient(to bottom, #505050 0%,#505050 50%,#666 100%);
 }
 
 .answer1-container {
