@@ -121,13 +121,13 @@ p {
 }
 
 .question-title {
-	margin-bottom: 4px;
+	margin-bottom: 0px;
 	font-size: 18px;	
 	color: #fff;
 	flex-basis: 100%;
 	padding: 10px;
 	border-radius: 5px 5px 0 0;
-	background: linear-gradient(to bottom, #505050 0%,#505050 50%,#666 100%);
+	background: linear-gradient(to bottom, #666 0%,#505050 50%,#555 100%);
 }
 
 .answer1-container {
