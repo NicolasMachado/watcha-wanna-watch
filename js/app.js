@@ -3,10 +3,13 @@ var controller = {
     genresToReturn: 2, // number of genres to return
     orderArray: [],
     currentQuestion: 0,
+    minResults: 10, // minimum amount of results. Otherwise, reshuffle
     nbQuestions: 1, // number of questions to randomly extract from the pool and ask
     imgBaseUrl: "",
     posterSizes: [],
+    releaseYear: 0,
     sortBy: "",
+    currentPage: 1,
     genresWeight: {
         "28": 0, // action              18.900
         "12": 0, // adventure           9.700
@@ -148,10 +151,31 @@ $(function () {
     controller.sortBy = randSortBy(); // get a random sortBy
     displayQuestion();
     getConfig(); // get config from API
-    // click on start
-    $(".start-button").click(function () {
+    // click on Start
+    $(".start").click(function () {
         $(".intro").hide();  
-        $(".questions-container").show();    
+        $(".questions-container").show();  
+    });
+    // click on Restart
+    $(".restart").click(function () {
+        controller.releaseYear = 0;
+        controller.currentPage = 1;
+        controller.orderArray = shuffle(); // randomize questions
+        controller.sortBy = randSortBy(); // get a random sortBy
+        displayQuestion();
+        $(".questions-container").show();
+        $(".movies").empty();
+        $(".restart").hide();
+        $(".more").hide();
+        $.each(controller.genresWeight, function (genre) {
+            controller.genresWeight[genre] = 0;
+        });
+    });
+    // click on More
+    $(".more").click(function () {
+        controller.currentPage++;
+        var genres = getHighestGenres();
+        getDataFromApi(genres, displayResults);
     });
     // click on answer 1
     $(".answer1-container").click(function () {
@@ -167,7 +191,6 @@ $(function () {
     });
     // click on movie image
     $(".movies").on("click", ".lightbox", function () {
-        //$("#desc").append("<p>BLAHBLAHBLAH</p>");
     });
 });
 
@@ -192,7 +215,7 @@ function recordAnswer(question, answer) {
     });
     // if it is the last question, show results
     if (controller.currentQuestion >= controller.nbQuestions - 1) {
-        $(".questions-container").empty();
+        //$(".questions-container").empty();
         $(".questions-container").hide();
         $(".movies").show();
         var genres = getHighestGenres();
@@ -203,6 +226,9 @@ function recordAnswer(question, answer) {
 
 function getDataFromApi(genres, callback) {
     "use strict";
+    if (controller.releaseYear === 0) {
+        controller.releaseYear = 2000 + Math.floor(Math.random()*17);
+    }
     var settings = {
         async: true,
         crossDomain: true,
@@ -216,7 +242,8 @@ function getDataFromApi(genres, callback) {
             page: controller.currentPage,
             sort_by: controller.sortBy,
             language: "en-US",
-            year: 2000 + Math.floor(Math.random()*17)
+            page: controller.currentPage,
+            year: controller.releaseYear
         },
         success: callback,
         error: function (result, status, error) {
@@ -254,6 +281,24 @@ function recordConfig(config) {
 
 function displayResults(response) {
     "use strict";
+    var genres = getHighestGenres();
+    console.log(response.page);
+    if (response.page !== response.total_pages) {
+        $(".more").show();       
+    } else {
+        $(".more").hide();           
+    }
+    $(".restart").show();
+    // check if more than 10 results, otherwise, reshuffle
+    if (response.total_results < controller.minResults && controller.genresToReturn > 1) {
+        console.log("not enough results... reshuffling");
+        var genres = getHighestGenres();
+        console.log(genres);
+        genres.splice(0,1);
+        console.log(genres);
+        getDataFromApi(genres, displayResults);
+        return
+    }
     console.log(response);
     $.each(response.results, function (i) {
         var imagePath = "";
