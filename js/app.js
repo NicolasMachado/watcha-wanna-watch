@@ -161,7 +161,7 @@ $(document).ready(function () {
     });
     // click on Restart
     $(".restart").on('click touch',function () {
-        $(".outro").show();
+        $(".outro").hide();
         controller.currentQuestion = 0;
         controller.releaseYear = 0;
         controller.currentPage = 1;
@@ -286,7 +286,7 @@ function recordConfig(config) {
 function displayResults(response) {
     "use strict";
     $(".outro").show();
-    $(".outro-text").html("Sweet. I've found <span class=\"nbresults\">" + response.total_results + "</span> results for you!");  
+    $(".outro-text").html("I have found <span class=\"nbresults\">" + response.total_results + "</span> results for you!");  
     var genres = getHighestGenres();
     console.log(response.page);
     if (response.page !== response.total_pages) {
