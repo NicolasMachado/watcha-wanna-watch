@@ -56,6 +56,10 @@ p {
 	max-width: 500px;
 }
 
+.intro-text {
+	font-size: 17px;
+}
+
 .start-button {
 	font-size: 20px;	
 	padding: 15px;
@@ -65,7 +69,13 @@ p {
 	margin-bottom: 20px;
 	cursor: pointer;
 	border-radius: 3px;
+	background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 98%,#398235 100%);
 	background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 98%,#398235 100%);
+}
+
+.start-button:hover {
+	background: -webkit-linear-gradient(top, #D6E8AA 0%,#ACD092 98%,#4E974A 100%);
+	background: linear-gradient(to bottom, #D6E8AA 0%,#ACD092 98%,#4E974A 100%);	
 }
 
 .tmdb-logo {
@@ -112,7 +122,10 @@ p {
 }
 
 .questions-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	padding: 10px;
 	text-align: center;
@@ -121,31 +134,45 @@ p {
 }
 
 .question-title {
-	margin-bottom: 0px;
-	font-size: 18px;	
+	margin-bottom: 1px;
+	font-size: 16px;	
 	color: #fff;
+	-ms-flex-preferred-size: 100%;
 	flex-basis: 100%;
 	padding: 10px;
 	border-radius: 5px 5px 0 0;
-	background: linear-gradient(to bottom, #666 0%,#505050 50%,#555 100%);
+	background: -webkit-linear-gradient(top, #555 0%,#6A6A6A 97%,#31373A 100%);
+	background: linear-gradient(to bottom, #555 0%,#6A6A6A 97%,#31373A 100%);
 }
 
 .answer1-container {
 	width: 50%;
 	background-color: #C3E9BD;
 	cursor: pointer;
+	background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 98%,#398235 100%);
 	background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 98%,#398235 100%);
+}
+
+.answer1-container:hover {
+	background: -webkit-linear-gradient(top, #D6E8AA 0%,#ACD092 98%,#4E974A 100%);
+	background: linear-gradient(to bottom, #D6E8AA 0%,#ACD092 98%,#4E974A 100%);	
 }
 
 .answer2-container {
 	width: 50%;
 	background-color: #D9D9EB;
 	cursor: pointer;
-	background: linear-gradient(to bottom, #6db3f2 0%,#3690f0 98%,#1e69de 100%);
+	background: -webkit-linear-gradient(top, #6db3f2 0%,#3690f0 98%,#1F58B0 100%);
+	background: linear-gradient(to bottom, #6db3f2 0%,#3690f0 98%,#1F58B0 100%);
+}
+
+.answer2-container:hover {
+	background: -webkit-linear-gradient(top, #84C4FF 0%,#5BABFF 98%,#326BC3 100%);
+	background: linear-gradient(to bottom, #84C4FF 0%,#5BABFF 98%,#326BC3 100%);
 }
 
 .answer1, .answer2 {
-	font-size: 20px;	
+	font-size: 17px;	
 	padding-top: 50px;
 	padding-left: 30px;
 	padding-right: 30px;
