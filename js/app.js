@@ -156,7 +156,7 @@ $(document).ready(function () {
     // click on Start
     $(".start").on('click touch', function () {
         $(".questions-container").show();  
-        $(".intro").hide();  
+        $(".intro").hide();
     });
     // click on Restart
     $(".restart").on('click touch',function () {
