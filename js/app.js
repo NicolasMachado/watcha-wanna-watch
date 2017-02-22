@@ -154,12 +154,12 @@ $(function () {
     $(".more").hide();
     getConfig(); // get config from API
     // click on Start
-    $(".start").click(function () {
+    $(".start").on('click touchstart', function () {
         $(".intro").hide();  
         $(".questions-container").show();  
     });
     // click on Restart
-    $(".restart").click(function () {
+    $(".restart").on('click touchstart',function () {
         controller.releaseYear = 0;
         controller.currentPage = 1;
         controller.orderArray = shuffle(); // randomize questions
@@ -174,25 +174,25 @@ $(function () {
         });
     });
     // click on More
-    $(".more").click(function () {
+    $(".more").on('click touchstart', function () {
         controller.currentPage++;
         var genres = getHighestGenres();
         getDataFromApi(genres, displayResults);
     });
     // click on answer 1
-    $(".answer1-container").click(function () {
+    $(".answer1-container").on('click touchstart', function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], true);
         controller.currentQuestion += 1;
         displayQuestion();
     });
     // click on answer 2
-    $(".answer2-container").click(function () {
+    $(".answer2-container").on('click touchstart', function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], false);
         controller.currentQuestion += 1;
         displayQuestion();
     });
     // click on movie image
-    $(".movies").on("click", ".lightbox", function () {
+    $(".movies").on("click touchstart", ".lightbox", function () {
     });
 });
 
