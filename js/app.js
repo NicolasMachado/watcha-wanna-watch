@@ -157,6 +157,7 @@ $(document).ready(function () {
     $(".start").on('click touch', function () {
         $(".questions-container").show();  
         $(".intro").hide();
+        $(".tmdb-logo").hide();
     });
     // click on Restart
     $(".restart").on('click touch',function () {
