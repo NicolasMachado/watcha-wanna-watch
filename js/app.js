@@ -150,6 +150,8 @@ $(function () {
     controller.orderArray = shuffle(); // randomize questions
     controller.sortBy = randSortBy(); // get a random sortBy
     displayQuestion();
+    $(".restart").hide();
+    $(".more").hide();
     getConfig(); // get config from API
     // click on Start
     $(".start").click(function () {
