@@ -144,7 +144,7 @@ var controller = {
     ]
 };
 
-$(document).ready(function () {
+$(function () {
     "use strict";
     $(".questions-container").hide().removeClass("hidden");
     controller.orderArray = shuffle(); // randomize questions
@@ -154,12 +154,12 @@ $(document).ready(function () {
     $(".more").hide();
     getConfig(); // get config from API
     // click on Start
-    $(".start").on('click touchstart', function () {
-        $(".intro").hide();  
+    $(".start").on('click touch', function () {
         $(".questions-container").show();  
+        $(".intro").hide();  
     });
     // click on Restart
-    $(".restart").on('click touchstart',function () {
+    $(".restart").on('click touch',function () {
         controller.releaseYear = 0;
         controller.currentPage = 1;
         controller.orderArray = shuffle(); // randomize questions
@@ -174,25 +174,25 @@ $(document).ready(function () {
         });
     });
     // click on More
-    $(".more").on('click touchstart', function () {
+    $(".more").on('click touch', function () {
         controller.currentPage++;
         var genres = getHighestGenres();
         getDataFromApi(genres, displayResults);
     });
     // click on answer 1
-    $(".answer1-container").on('click touchstart', function () {
+    $(".answer1-container").on('click touch', function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], true);
         controller.currentQuestion += 1;
         displayQuestion();
     });
     // click on answer 2
-    $(".answer2-container").on('click touchstart', function () {
+    $(".answer2-container").on('click touch', function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], false);
         controller.currentQuestion += 1;
         displayQuestion();
     });
     // click on movie image
-    $(".movies").on("click touchstart", ".lightbox", function () {
+    $(".movies").on("click touch", ".lightbox", function () {
     });
 });
 
