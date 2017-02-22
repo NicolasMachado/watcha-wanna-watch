@@ -1,10 +1,10 @@
 var controller = {
     currentPage: 1,
-    genresToReturn: 2, // number of genres to return
+    genresToReturn: 2, // number of genres to return / has to be > 1
     orderArray: [],
     currentQuestion: 0,
     minResults: 10, // minimum amount of results. Otherwise, reshuffle
-    nbQuestions: 1, // number of questions to randomly extract from the pool and ask
+    nbQuestions: 7, // number of questions to randomly extract from the pool and ask
     imgBaseUrl: "",
     posterSizes: [],
     releaseYear: 0,
@@ -160,6 +160,7 @@ $(document).ready(function () {
     });
     // click on Restart
     $(".restart").on('click touch',function () {
+        controller.currentQuestion = 0;
         controller.releaseYear = 0;
         controller.currentPage = 1;
         controller.orderArray = shuffle(); // randomize questions
@@ -244,7 +245,6 @@ function getDataFromApi(genres, callback) {
             page: controller.currentPage,
             sort_by: controller.sortBy,
             language: "en-US",
-            page: controller.currentPage,
             year: controller.releaseYear
         },
         success: callback,
