@@ -144,7 +144,7 @@ var controller = {
     ]
 };
 
-$(function () {
+$(document).ready(function () {
     "use strict";
     $(".questions-container").hide().removeClass("hidden");
     controller.orderArray = shuffle(); // randomize questions
