@@ -161,6 +161,7 @@ $(document).ready(function () {
     });
     // click on Restart
     $(".restart").on('click touch',function () {
+        $(".outro").show();
         controller.currentQuestion = 0;
         controller.releaseYear = 0;
         controller.currentPage = 1;
@@ -284,12 +285,14 @@ function recordConfig(config) {
 
 function displayResults(response) {
     "use strict";
+    $(".outro").show();
+    $(".outro-text").html("Sweet. I've found <span class=\"nbresults\">" + response.total_results + "</span> results for you!");  
     var genres = getHighestGenres();
     console.log(response.page);
     if (response.page !== response.total_pages) {
-        $(".more").show();       
+        $(".more").show();
     } else {
-        $(".more").hide();           
+        $(".more").hide();
     }
     $(".restart").show();
     // check if more than 10 results, otherwise, reshuffle
@@ -384,14 +387,14 @@ function recordDetails(config) {
     var numFullStars = config.vote_average/2;
     var halfStar = "";
     var starString = "";
-    numFullStars % 1 >= .5 ? halfStar = "<img src=\"images/star-half.png\">" : halfStar = "<img src=\"images/star-empty.png\">";
+    numFullStars % 1 >= .5 ? halfStar = "<img src=\"images/star-half.png\" width=\"30px\">" : halfStar = "<img src=\"images/star-empty.png\" width=\"30px\">";
     for (var i = 1; i <= 5; i++) {
         if (i <= numFullStars) {
-            starString += "<img src=\"images/star-full.png\">";
+            starString += "<img src=\"images/star-full.png\" width=\"30px\">";
         } else if (i == Math.floor(numFullStars)+1) {
             starString += halfStar;          
         } else {
-            starString += "<img src=\"images/star-empty.png\">";           
+            starString += "<img src=\"images/star-empty.png\" width=\"30px\">";           
         }
     }
     $(".desc-title").text(config.title);
