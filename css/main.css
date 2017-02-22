@@ -76,7 +76,7 @@ p {
 	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 20px;
+	margin-bottom: 20px; 
 	cursor: pointer;
 	border-radius: 3px;
 	background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 98%,#398235 100%);
