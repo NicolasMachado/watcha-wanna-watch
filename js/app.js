@@ -492,7 +492,7 @@ function recordConfig(config) {
 function displayResults(response) {
     "use strict";
     $(".outro").show();
-    $(".outro-text").html("I have found <span class=\"nbresults\">" + response.total_results + "</span> results for you!");
+    $(".outro-text").html("I have found <span class=\"nbresults\">" + response.total_results + "</span> movies for you!");
     var genres = getHighestGenres();
     console.log(response.page);
     if (response.page !== response.total_pages) {
