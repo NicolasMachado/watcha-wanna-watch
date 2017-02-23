@@ -9,7 +9,6 @@ var controller = {
     posterSizes: [],
     releaseYear: 0,
     sortBy: "",
-    currentPage: 1,
     genresWeight: {
         "28": 0, // action              18.900
         "12": 0, // adventure           9.700
@@ -154,13 +153,13 @@ $(document).ready(function () {
     $(".more").hide();
     getConfig(); // get config from API
     // click on Start
-    $(".start").on('click touch', function () {
-        $(".questions-container").show();  
+    $(".start").on("click touch", function () {
+        $(".questions-container").show();
         $(".intro").hide();
         $(".tmdb-logo").hide();
     });
     // click on Restart
-    $(".restart").on('click touch',function () {
+    $(".restart").on("click touch", function () {
         $(".outro").hide();
         controller.currentQuestion = 0;
         controller.releaseYear = 0;
@@ -177,25 +176,22 @@ $(document).ready(function () {
         });
     });
     // click on More
-    $(".more").on('click touch', function () {
+    $(".more").on("click touch", function () {
         controller.currentPage++;
         var genres = getHighestGenres();
         getDataFromApi(genres, displayResults);
     });
     // click on answer 1
-    $(".answer1-container").on('click touch', function () {
+    $(".answer1-container").on("click touch", function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], true);
         controller.currentQuestion += 1;
         displayQuestion();
     });
     // click on answer 2
-    $(".answer2-container").on('click touch', function () {
+    $(".answer2-container").on("click touch", function () {
         recordAnswer(controller.questions[controller.orderArray[controller.currentQuestion]], false);
         controller.currentQuestion += 1;
         displayQuestion();
-    });
-    // click on movie image
-    $(".movies").on("click touch", ".lightbox", function () {
     });
 });
 
@@ -232,7 +228,7 @@ function recordAnswer(question, answer) {
 function getDataFromApi(genres, callback) {
     "use strict";
     if (controller.releaseYear === 0) {
-        controller.releaseYear = 2000 + Math.floor(Math.random()*17);
+        controller.releaseYear = 2000 + Math.floor(Math.random() * 17);
     }
     var settings = {
         async: true,
@@ -286,7 +282,7 @@ function recordConfig(config) {
 function displayResults(response) {
     "use strict";
     $(".outro").show();
-    $(".outro-text").html("I have found <span class=\"nbresults\">" + response.total_results + "</span> results for you!");  
+    $(".outro-text").html("I have found <span class=\"nbresults\">" + response.total_results + "</span> results for you!");
     var genres = getHighestGenres();
     console.log(response.page);
     if (response.page !== response.total_pages) {
@@ -298,12 +294,11 @@ function displayResults(response) {
     // check if more than 10 results, otherwise, reshuffle
     if (response.total_results < controller.minResults && controller.genresToReturn > 1) {
         console.log("not enough results... reshuffling");
-        var genres = getHighestGenres();
         console.log(genres);
-        genres.splice(0,1);
+        genres.splice(0, 1);
         console.log(genres);
         getDataFromApi(genres, displayResults);
-        return
+        return;
     }
     console.log(response);
     $.each(response.results, function (i) {
@@ -311,12 +306,12 @@ function displayResults(response) {
         if (response.results[i].poster_path) {
             imagePath = controller.imgBaseUrl + controller.posterSizes + response.results[i].poster_path;
         } else {
-            imagePath = "images/unavailable.jpg";           
+            imagePath = "images/unavailable.jpg";
         }
         $(".movies").append(
             "<div class=\"col-3\">" +
-                "<a class=\"lightbox\" data-id=\"" + response.results[i].id + "\">" + 
-                    "<div class=\"movie-container\" style=\"background: url(\'" + imagePath + "\') no-repeat center;background-size: 100% auto;\">" +
+                "<a class=\"lightbox\" data-id=\"" + response.results[i].id + "\">" +
+                    "<div class=\"movie-container\" style=\"background: url('" + imagePath + "') no-repeat center;background-size: 100% auto;\">" +
                     "<span class=\"movie-title\">" + response.results[i].title + "</span>" +
                     "</div>" +
                 "</a>" +
@@ -324,19 +319,19 @@ function displayResults(response) {
         );
     });
     $(".lightbox").lightcase({
-        href:"#desc",
+        href: "#desc",
         transitionOut: "elastic",
         cssTransitions: true,
         liveResize: true,
         // Would be called before generating content
-        onInit : {
-            a: function() {
-                var movieID = $(this).data("id");
+        onInit: {
+            a: function () {
+                var movieID = this.data("id");
                 // ajax movie details
                 var configDetails = {
                     async: false,
                     crossDomain: true,
-                    url: "https://api.themoviedb.org/3/movie/" + movieID +"?",
+                    url: "https://api.themoviedb.org/3/movie/" + movieID + "?",
                     method: "GET",
                     language: "en-US",
                     headers: {},
@@ -346,8 +341,8 @@ function displayResults(response) {
                     success: recordDetails,
                     error: function (result, status, error) {
                         console.log(result + " - " + status + " - " + error);
-                    }                
-                }
+                    }
+                };
                 $.ajax(configDetails);
 
                 // ajax movie videos
@@ -364,18 +359,18 @@ function displayResults(response) {
                     success: recordVideoDetails,
                     error: function (result, status, error) {
                         console.log(result + " - " + status + " - " + error);
-                    }                
-                }
+                    }
+                };
                 $.ajax(configVDetails);
             }
         },
         // Would be called when aborting lightcase
-        onClose : {
-            a: function() {
+        onClose: {
+            a: function () {
                 $(".desc-title").empty();
                 $(".desc-rating").empty();
-                $(".desc-synopsis").empty();     
-                $(".desc-trailer").attr("src", "").hide();          
+                $(".desc-synopsis").empty();
+                $(".desc-trailer").attr("src", "").hide();
             }
         }
     });
@@ -384,17 +379,21 @@ function displayResults(response) {
 function recordDetails(config) {
     "use strict";
     console.log(config);
-    var numFullStars = config.vote_average/2;
+    var numFullStars = config.vote_average / 2;
     var halfStar = "";
     var starString = "";
-    numFullStars % 1 >= .5 ? halfStar = "<img src=\"images/star-half.png\" width=\"30px\">" : halfStar = "<img src=\"images/star-empty.png\" width=\"30px\">";
+    if (numFullStars % 1 >= 0.5) {
+        halfStar = "<img src=\"images/star-half.png\" width=\"30px\">";
+    } else {
+        halfStar = "<img src=\"images/star-empty.png\" width=\"30px\">";
+    }
     for (var i = 1; i <= 5; i++) {
         if (i <= numFullStars) {
             starString += "<img src=\"images/star-full.png\" width=\"30px\">";
-        } else if (i == Math.floor(numFullStars)+1) {
-            starString += halfStar;          
+        } else if (i === Math.floor(numFullStars) + 1) {
+            starString += halfStar;
         } else {
-            starString += "<img src=\"images/star-empty.png\" width=\"30px\">";           
+            starString += "<img src=\"images/star-empty.png\" width=\"30px\">";
         }
     }
     $(".desc-title").text(config.title);
@@ -453,5 +452,5 @@ function shuffle() {
 function randSortBy() {
     "use strict";
     var sortArray = ["popularity.desc", "revenue.desc", "vote_average.desc", "vote_count.desc"];
-    return sortArray[Math.floor(Math.random()*sortArray.length)];
+    return sortArray[Math.floor(Math.random() * sortArray.length)];
 }
