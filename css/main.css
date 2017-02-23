@@ -309,11 +309,11 @@ p {
   	}
 
 	.answer1-container, .answer2-container {
-		display: inline-block;
+		display: block;
 		width: 100%;
 	}
 
-	.answer1-container {
+	.question-title {
 		display: block;
 	}
 
