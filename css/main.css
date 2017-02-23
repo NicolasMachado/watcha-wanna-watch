@@ -313,6 +313,10 @@ p {
 		width: 100%;
 	}
 
+	.answer1-container {
+		display: block;
+	}
+
 	.answer2 {
 		padding-bottom: 50px;
 	}
