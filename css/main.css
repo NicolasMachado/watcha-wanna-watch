@@ -172,11 +172,13 @@ p {
 }
 
 .questions-container {
+	/*
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
+	*/
 	padding: 10px;
 	text-align: center;
 	font-size: 20px;
@@ -199,7 +201,8 @@ p {
 }
 
 .answer1-container {
-	width: 50%;
+	display: inline-block;
+	width: 40%;
 	background-color: #C3E9BD;
 	cursor: pointer;
 	background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 98%,#398235 100%);
@@ -212,7 +215,8 @@ p {
 }
 
 .answer2-container {
-	width: 50%;
+	display: inline-block;
+	width: 40%;
 	background-color: #D9D9EB;
 	cursor: pointer;
 	background: -webkit-linear-gradient(top, #6db3f2 0%,#3690f0 98%,#1F58B0 100%);
