@@ -304,6 +304,10 @@ p {
     	width: 100%;
   	}
 
+  	.questions-container {
+  		display: box;
+  	}
+
 	.answer1-container, .answer2-container {
 		display: inline-block;
 		width: 100%;
