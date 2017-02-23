@@ -187,8 +187,11 @@ p {
 	margin-bottom: 1px;
 	font-size: 16px;	
 	color: #fff;
+	width: 100%;
+	/*
 	-ms-flex-preferred-size: 100%;
 	flex-basis: 100%;
+	*/
 	padding: 10px;
 	border-radius: 5px 5px 0 0;
 	background: -webkit-linear-gradient(top, #555 0%,#6A6A6A 97%,#31373A 100%);
