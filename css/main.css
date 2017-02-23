@@ -305,7 +305,7 @@ p {
   	}
 
   	.questions-container {
-  		display: box;
+  		display: block;
   	}
 
 	.answer1-container, .answer2-container {
