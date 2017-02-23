@@ -179,7 +179,7 @@ var controller = {
             type: "genre",
             question: "What is better",
             answer1: "An inconvenient truth",
-            answer2: "An comfortable lie",
+            answer2: "A comfortable lie",
             effect: [[12, 1], [99, 1], [18, 1], [14, -1], [9648, -1], [878, -1]]
         },
         {
