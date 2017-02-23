@@ -2,7 +2,7 @@
 
 Thinkful (https://www.thinkful.com/) first portfolio project.
 
-Watcha Wanna Watch is an online app that recommends movies according to your personality and tastes. Those are deducted by a group of NASA scientists after a series of short random questions (I swear).
+Watcha Wanna Watch is an online app that recommends movies according to your personality and tastes. Those are measured by a remote group of NASA scientists after a series of short random questions (I swear).
 
 ##Introduction
 
@@ -23,6 +23,6 @@ You can access Watcha Wanna Watch at https://nicolasmachado.github.io/watcha-wan
 * Each question is an excuse to add/remove weight to category scores such as "adventure", "romance, "thriller" etc.
 * The app selects the two top score genres by default for the final selection.
 * The release year is randomly selected between 2000 and 2017 to get better randomization. The API doesn't strictly restrict the year.
-* If the user gets less than 10 results, the app automatically removes one genre in order to get a wider selection.
+* If the user gets less than 10 results, the app automatically removes one genre and resend an API request in order to get a wider selection.
 * An Excel file has been created to generate questions that can be directly implemented in the app JS.
 * The app doesn't use Flexbox for mobile view in order to maximize compatibility with native mobile browsers.
