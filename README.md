@@ -14,7 +14,7 @@ The app was designed to work on mobile, tablets and desktop. Its interface is me
 
 ##Live Site
 
-You can access Watcha Wanna Watch at https://nicolasmachado.github.io/watcha-wanna-watch/
+You can access Watcha Wanna Watch at http://www.watcha-wanna-watch.com
 
 ##Under the hood
 
