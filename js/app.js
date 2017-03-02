@@ -221,7 +221,7 @@ var controller = {
             type: "genre",
             question: "Have aliens ever visited Earth?",
             answer1: "Probably",
-            answer2: "Probbaly not",
+            answer2: "Probably not",
             effect: [[14, 1], [9648, 2], [878, 1]]
         },
         {
