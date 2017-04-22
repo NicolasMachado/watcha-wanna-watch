@@ -2,6 +2,10 @@
 
 Thinkful (https://www.thinkful.com/) first portfolio project.
 
+## Technology
+
+<img src="https://raw.githubusercontent.com/NicolasMachado/Help-Expat-Berlin/master/views/images/icons/html5.png" height="40px" alt="HTML5" title="HTML5" /> <img src="https://raw.githubusercontent.com/NicolasMachado/Help-Expat-Berlin/master/views/images/icons/css3.png" height="40px" alt="CSS3" title="CSS3" /> <img src="https://raw.githubusercontent.com/NicolasMachado/Help-Expat-Berlin/master/views/images/icons/javascript.png" height="40px" alt="Javascript" title="Javascript" /> <img src="https://raw.githubusercontent.com/NicolasMachado/Help-Expat-Berlin/master/views/images/icons/ajax.png" height="40px" alt="Ajax" title="Ajax" /> <img src="https://raw.githubusercontent.com/NicolasMachado/Help-Expat-Berlin/master/views/images/icons/jquery.png" height="40px" alt="jQuery" title="jQuery" />
+
 Watcha Wanna Watch is an online app that recommends movies according to your personality and tastes. Those are measured by a remote group of NASA scientists after a series of short random questions (I swear).
 
 ##Introduction
