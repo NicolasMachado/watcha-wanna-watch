@@ -432,7 +432,6 @@ function recordAnswer(question, answer) {
         var genres = getHighestGenres();
         getDataFromApi(genres, displayResults);
     }
-    //console.log(controller.genresWeight);
 }
 
 function getDataFromApi(genres, callback) {
@@ -457,7 +456,7 @@ function getDataFromApi(genres, callback) {
         },
         success: callback,
         error: function (result, status, error) {
-            //console.log(result + " - " + status + " - " + error);
+            console.log(result + " - " + status + " - " + error);
         }
     };
     $.ajax(settings);
@@ -476,7 +475,7 @@ function getConfig() {
         },
         success: recordConfig,
         error: function (result, status, error) {
-            //console.log(result + " - " + status + " - " + error);
+            console.log(result + " - " + status + " - " + error);
         }
     };
     $.ajax(config);
@@ -486,7 +485,6 @@ function recordConfig(config) {
     "use strict";
     controller.imgBaseUrl = config.images.secure_base_url;
     controller.posterSizes = config.images.poster_sizes[3]; // poster size
-    //console.log(config);
 }
 
 function displayResults(response) {
@@ -494,7 +492,6 @@ function displayResults(response) {
     $(".outro").show();
     $(".outro-text").html("I have found <span class=\"nbresults\">" + response.total_results + "</span> movies for you!");
     var genres = getHighestGenres();
-    //console.log(response.page);
     if (response.page !== response.total_pages) {
         $(".more").show();
     } else {
@@ -503,14 +500,10 @@ function displayResults(response) {
     $(".restart").show();
     // check if more than 10 results, otherwise, reshuffle
     if (response.total_results < controller.minResults && controller.genresToReturn > 1) {
-        //console.log("not enough results... reshuffling");
-        //console.log(genres);
         genres.splice(0, 1);
-        //console.log(genres);
         getDataFromApi(genres, displayResults);
         return;
     }
-    //console.log(response);
     $.each(response.results, function (i) {
         var imagePath = "";
         if (response.results[i].poster_path) {
@@ -588,7 +581,6 @@ function displayResults(response) {
 
 function recordDetails(config) {
     "use strict";
-    //console.log(config);
     var numFullStars = config.vote_average / 2;
     var halfStar = "";
     var starString = "";
@@ -615,7 +607,6 @@ function recordDetails(config) {
 
 function recordVideoDetails(config) {
     "use strict";
-    //console.log(config);
     if (config.results.length > 0) {
         $(".desc-trailer").show();
         $(".desc-trailer").attr("src", "https://www.youtube.com/embed/" + config.results[0].key).show();
@@ -638,7 +629,6 @@ function getHighestGenres() {
     $.each(resultArray, function (i) {
         finalArray.push(resultArray[i][0]);
     });
-    //console.log(finalArray);
     return finalArray;
 }
 
